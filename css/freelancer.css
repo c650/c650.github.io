@@ -197,14 +197,14 @@ section.success {
     background: #555555;
 }
 
-section.success a,
+/*section.success a,
 section.success a:hover,
 section.success a:focus,
 section.success a:active,
 section.success a.active {
     outline: 0;
     color: #313131;
-}
+}*/
 
 @media(max-width:767px) {
     section {
@@ -478,4 +478,12 @@ footer .footer-below {
 .portfolio-modal .modal-backdrop {
     display: none;
     opacity: 0;
+}
+.about-link,
+.about-link:hover,
+.about-link:focus, 
+.about-link:active {
+    color: #ff5733;
+    text-decoration: none;
+    outline: 0;
 }
