@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
 
@@ -113,7 +113,7 @@
                     <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
-                                <p>Over one year of C++ experience</p>
+                                <p><span id="time-since-cpp"></span> years of C++ experience</p>
                             </div>
                         </div>
                         <img src="img/portfolio/cplusplus.png" class="img-responsive" alt="c++">
@@ -123,7 +123,7 @@
                     <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
-                                <p>Eight months of Ruby programming experience</p>
+                                <p><span id="time-since-ruby"></span> years of Ruby programming experience</p>
                             </div>
                         </div>
                         <img src="img/portfolio/ruby.png" class="img-responsive" alt="ruby">
@@ -133,7 +133,7 @@
                     <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
-                                <p>Working experience with HTML and CSS</p>
+                                <p><span id="time-since-html"></span> year(s) of experience with HTML and CSS</p>
                             </div>
                         </div>
                         <img src="img/portfolio/html5.png" class="img-responsive" alt="html5">
@@ -143,8 +143,9 @@
                     <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
-                                <p>One year of Linux Experience. (Ubuntu/Debain-based systems)</p>
-                                <p>Can use terminal.</p>
+                                <p><span id="time-since-linux"></span> year(s) of Linux Experience. (Ubuntu/Debian-based systems).
+									 Linux is my preference (over Windows and macOS) and I am more than comfortable using the shell.
+								 </p>
                             </div>
                         </div>
                         <img src="https://monovm.com/images/unzip-centos.png" class="img-responsive" alt="">
@@ -170,6 +171,19 @@
                         <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
                     </a>
                 </div> -->
+				<script>
+					/* to calculate time since starting certain things */
+					var today = new Date();
+					var ruby_date = new Date(2015, 5);
+					var cpp_date = new Date(2014, 8);
+					var time_since_ruby_linux_html = Math.round((today - ruby_date) / (1000 * 60 * 60 * 24 * 365.0),1);
+					var time_since_cpp = Math.round((today - cpp_date) / (1000 * 60 * 60 * 24 * 365.0),1);
+
+					document.getElementById("time-since-ruby").innerHTML = time_since_ruby_linux_html;
+					document.getElementById("time-since-linux").innerHTML = time_since_ruby_linux_html;
+					document.getElementById("time-since-html").innerHTML = time_since_ruby_linux_html;
+					document.getElementById("time-since-cpp").innerHTML = time_since_cpp;
+				</script>
             </div>
         </div>
     </section>
@@ -196,9 +210,23 @@
                 </div>
                 <div class="col-lg-4">
                     <p>
-                        Have worked on several projects including <a class="about-link" href="http://linefree.herokuapp.com/">linefree</a>. 
-                        Over 300 reputation on <a class="about-link" href="http://stackoverflow.com">Stack Overflow</a>. Refer to <a class="about-link" href="https://github.com/c650">Github</a> for sample code.
+                        Have worked on several projects including <a class="about-link" href="http://linefree.herokuapp.com/">linefree</a>.
+						 A Reputation score of <span id="SOrep" value></span> on <a class="about-link" href="http://stackoverflow.com">Stack Overflow</a>. Refer to <a class="about-link" href="https://github.com/c650">Github</a> for sample code.
                     </p>
+					<script>
+						var xhr = new XMLHttpRequest();
+						xhr.open('GET', "https://api.stackexchange.com/2.2/users/5042431?order=desc&sort=reputation&site=stackoverflow", true);
+						xhr.send();
+
+						xhr.onreadystatechange = processRequest;
+
+						function processRequest(e) {
+							if (xhr.readyState == 4 && xhr.status == 200) {
+						        var response = JSON.parse(xhr.responseText);
+						        document.getElementById("SOrep").innerHTML = response.items[0].reputation;
+						    }
+						}
+					</script>
                 </div>
                 <div class="col-lg-3">
                     <h4>Leadership Positions</h4>
@@ -300,7 +328,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Charles Bailey 2016
+                        Copyright &copy; Charles Bailey 2017
                     </div>
                 </div>
             </div>
